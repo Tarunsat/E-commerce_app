@@ -19,7 +19,7 @@ public class BasicSpinnerAdapter extends BaseAdapter {
     private Context mContext;
     private ArrayList<Integer>imagesource;
 
-    public BasicSpinnerAdapter(ArrayList<Integer> mimagesource, ArrayList<String> data, ArrayList<String> spinnerItems, Context context) {
+    public BasicSpinnerAdapter(ArrayList<Integer> mimagesource, ArrayList<String> data, ArrayList<String> spinnerItems, MainActivity context) {
         mData = data;
         mContext = context;
         mSpinnerItems = spinnerItems;
@@ -47,9 +47,20 @@ public class BasicSpinnerAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
+        //final    viewHolder holder;
+
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.row_item_spinner, null);
+            /*
+            holder = new viewHolder();
+
+            holder.name = (TextView) convertView.findViewById(R.id.title);
+            holder.image = (ImageView) convertView.findViewById(R.id.photo);
+
+            convertView.setTag(holder);
+            */
+
         }
 
         TextView textView = (TextView) view.findViewById(R.id.title);
@@ -62,5 +73,13 @@ public class BasicSpinnerAdapter extends BaseAdapter {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, mSpinnerItems);
         spinner.setAdapter(adapter);
         return view;
+
+
+    }
+    public class viewHolder {
+
+        TextView name;
+        ImageView image;
+
     }
 }

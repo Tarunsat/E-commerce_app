@@ -2,23 +2,31 @@ package com.example.testlist.data;
 
 import android.provider.BaseColumns;
 
-public class Contract {
+public final class Contract {
+
     public static abstract class HeadphoneEntry implements BaseColumns {
 
-        public static final String TABLE_NAME = "wallpapers";
+        public static final String TABLE_NAME = "inventory";
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_PRICE = "price";
-        public static final String COLUMN_RESOLUTION = "resolution";
-        public static final String COLUMN_STOCK = "stock";
-        public static final String COLUMN_IMAGE = "image";
+        public static final String COLUMN_STYLE = "style";
+
+        public static final String COLUMN_ID ="id";
 
         /**
          * Possible values for the style of the headphone.
          */
-        public static final int RESOLUTION_720p = 0;
-        public static final int RESOLUTION_1080p = 1;
-        public static final int RESOLUTION_4k = 2;
+        public static final int STYLE_EAR_BUD = 0;
+        public static final int STYLE_ON_EAR = 1;
+        public static final int STYLE_OVER_EAR = 2;
+        public static final int STYLE_BONE_CONDUCTION = 3;
 
 
+        public static final String TABLE1_NAME = "users";
+        public static final String COLUMN1_NAME = "name";
+        public static final String COLUMN1_MOBILE = "mobile";
+        public static final String COLUMN1_PASS = "password";
+
+        public static final String COLUMN1_ID ="id";
     }
 }

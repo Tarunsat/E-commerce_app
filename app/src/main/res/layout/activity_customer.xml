@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.testlist.customer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+   >
+    <Button
+        android:id="@+id/cart"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+
+
+        android:background="@color/black"
+        android:gravity="end"
+
+        android:onClick="gotoPrevious"
+        android:text="Back"
+
+        android:textColor="@color/black"
+
+        android:textSize="20sp" />
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="com.example.testlist.customer"
+        android:id="@+id/lol"
+        android:layout_below="@+id/cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:text="Details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="#000000"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Enter Name"
+        android:ems="10"
+        android:layout_marginTop="27dp"
+        android:id="@+id/Name"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:hint="Enter Phone Number"
+        android:gravity="center"
+        android:ems="10"
+        android:layout_below="@+id/Name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="37dp"
+        android:id="@+id/MobileNo" />
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:hint="Enter New Password"
+            android:gravity="center"
+            android:ems="10"
+            android:layout_below="@+id/MobileNo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="37dp"
+            android:id="@+id/Password" />
+
+    <Button
+        android:text="Go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
+        android:id="@+id/goButton"
+        android:onClick="addData"
+        />
+    </RelativeLayout>
+
+
+</RelativeLayout>

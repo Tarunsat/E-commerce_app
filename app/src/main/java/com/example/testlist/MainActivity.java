@@ -1,49 +1,47 @@
 package com.example.testlist;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ListView;
-import android.widget.Toolbar;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.testlist.data.DataBaseHelperInventory;
+import com.example.testlist.data.modalClass;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
-    private ListView lvSpinner;
+    private ArrayList<modalClass> courseModalArrayList;
+    private DataBaseHelperInventory dbHandler;
+    private RVAAdapter courseRVAdapter;
+    private RecyclerView coursesRV;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        lvSpinner = (ListView) findViewById(R.id.listview_spinner);
 
-        ArrayList<String> mData = new ArrayList<>();
-        mData.add("Halo 4");
-        mData.add("Halo 2");
-        mData.add("Nasa");
-        mData.add("Blade Runner");
+        courseModalArrayList = new ArrayList<>();
+        dbHandler = new DataBaseHelperInventory(MainActivity.this);
 
-        ArrayList<Integer> imagesource = new ArrayList<>();
-        imagesource.add(R.drawable.h4);
-        imagesource.add(R.drawable.h2);
-        imagesource.add(R.drawable.nasa);
-        imagesource.add(R.drawable.bladerunner);
+        // getting our course array
+        // list from db handler class.
+        courseModalArrayList = dbHandler.readCourses();
 
+        // on below line passing our array lost to our adapter class.
+        courseRVAdapter = new RVAAdapter(courseModalArrayList, MainActivity.this);
+        coursesRV = findViewById(R.id.idRVCourses);
 
-        ArrayList<String> mSpinnerData = new ArrayList<>();
-        mSpinnerData.add("720p");
-        mSpinnerData.add("1080p");
-        mSpinnerData.add("4k");
+        // setting layout manager for our recycler view.
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this, RecyclerView.VERTICAL, false);
+        coursesRV.setLayoutManager(linearLayoutManager);
 
-        BasicSpinnerAdapter adapter = new BasicSpinnerAdapter(imagesource, mData, mSpinnerData, this);
-        lvSpinner.setAdapter(adapter);
-
-
+        // setting our adapter to recycler view.
+        coursesRV.setAdapter(courseRVAdapter);
 
 
     }
@@ -55,4 +53,10 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, TotalCostActivity.class);
         startActivity(i);
     }
+    public void Additems(View view)
+    {
+        Intent i = new Intent(this, addDatatoInventory.class);
+        startActivity(i);
+    }
+
 }

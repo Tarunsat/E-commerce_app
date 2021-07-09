@@ -47,6 +47,7 @@
                     android:paddingRight="10sp"
                     android:gravity="right"
                     android:text="Edit"
+                    android:onClick="gotoCustomer"
 
                     android:textSize="20sp"
 

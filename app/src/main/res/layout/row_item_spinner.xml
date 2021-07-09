@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    android:layout_below="@id/titles"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
 
     android:layout_marginTop="50sp"
 
@@ -41,15 +41,28 @@
             android:layout_weight="2"
             android:text="Wallpaper 1"
             android:gravity="center_horizontal"/>
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/photo"
+            android:layout_below="@id/title"
+            android:textSize="13sp"
+            android:paddingLeft="5sp"
+            android:text="Price"/>
+
 
         <Spinner
             android:id="@+id/row_item_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/photo"
-            android:layout_below="@id/title"
+            android:layout_below="@id/price"
             android:gravity="center_horizontal"
             />
+
+
+
         <RelativeLayout
 
             android:id="@+id/quan"
@@ -98,7 +111,7 @@
                 />
             <Button
                 android:id="@+id/positive"
-                android:layout_width="wrap_content"
+                android:layout_width="30sp"
                 android:layout_height="wrap_content"
                 android:textAlignment="textEnd"
                 android:layout_below="@id/quantag"
@@ -114,7 +127,7 @@
                 android:gravity="end" />
             <Button
                 android:id="@+id/negative"
-                android:layout_width="wrap_content"
+                android:layout_width="30sp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/quantag"
                 android:layout_alignParentLeft="true"
@@ -138,4 +151,5 @@
 
     </RelativeLayout>
 
-</RelativeLayout>
+</androidx.cardview.widget.CardView>
+

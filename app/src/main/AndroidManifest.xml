@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.testlist">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,8 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TestList">
-        <activity android:name=".AccountActivity"></activity>
-        <activity android:name=".TotalCostActivity"></activity>
+        <activity android:name=".login_page"></activity>
+        <activity android:name=".addDatatoInventory" />
+        <activity android:name=".customer" />
+        <activity android:name=".AccountActivity" />
+        <activity android:name=".TotalCostActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
