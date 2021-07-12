@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.testlist.data.DataBaseCart;
 import com.example.testlist.data.modalClass;
 
 import java.util.ArrayList;
@@ -18,7 +19,10 @@ public class RVAAdapter extends RecyclerView.Adapter<RVAAdapter.ViewHolder> {
     // variable for our array list and context
     private ArrayList<modalClass> courseModalArrayList;
     private Context context;
+    Global sharedData = Global.getInstance();
 
+
+    private DataBaseCart dbHandler;
     // constructor
     public RVAAdapter(ArrayList<modalClass> courseModalArrayList, Context context) {
         this.courseModalArrayList = courseModalArrayList;
@@ -42,6 +46,9 @@ public class RVAAdapter extends RecyclerView.Adapter<RVAAdapter.ViewHolder> {
         holder.NameTV.setText(modal.getItemName());
         holder.price.setText(modal.getItemPrice());
 
+
+
+
     }
 
     @Override
@@ -60,8 +67,35 @@ public class RVAAdapter extends RecyclerView.Adapter<RVAAdapter.ViewHolder> {
             // initializing our text views
             NameTV = itemView.findViewById(R.id.title);
             price= itemView.findViewById(R.id.price);
+            itemView.findViewById(R.id.positive).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int quan=0;
+
+                    String n= sharedData.getValue();
+                    dbHandler = new DataBaseCart(itemView.getContext());
+                    String Name = NameTV.toString();
+                    System.out.println(Name);
+                    if(quan==0)
+                    {
+                        quan++;
+                        String quomo=Integer.toString(quan);
+                        dbHandler.addNewItem(n,Name,quomo);
+                    }
+                    else
+                    {
+                        quan++;
+                        String quomo=Integer.toString(quan);
+                        dbHandler.UpdateQuantity(quomo);
+                    }
+
+
+                }
+            });
+
 
 
         }
     }
+
 }
