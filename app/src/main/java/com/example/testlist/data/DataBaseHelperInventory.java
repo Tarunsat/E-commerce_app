@@ -38,6 +38,7 @@ public class DataBaseHelperInventory extends SQLiteOpenHelper {
 
     // creating a constructor for our database handler.
     public DataBaseHelperInventory(Context context)
+
     {
         super(context, DB_NAME, null, DB_VERSION);
     }

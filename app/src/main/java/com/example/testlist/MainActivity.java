@@ -19,11 +19,19 @@ public class MainActivity extends AppCompatActivity {
     private DataBaseHelperInventory dbHandler;
     private RVAAdapter courseRVAdapter;
     private RecyclerView coursesRV;
+    Global sharedData = Global.getInstance();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        String n= sharedData.getValue();
+        if (n.equals("0"))
+        {
+            Intent i = new Intent(this, login_page.class);
+            startActivity(i);
+        }
+
 
         courseModalArrayList = new ArrayList<>();
         dbHandler = new DataBaseHelperInventory(MainActivity.this);

@@ -4,6 +4,7 @@ package com.example.testlist.data;
 public class modalClassUser {
     private String userName;
     private String userPass;
+    private String userMobile;
 
     private int id;
 
@@ -20,6 +21,8 @@ public class modalClassUser {
         return userPass;
     }
 
+
+
     public int getId() {
         return id;
     }
@@ -33,6 +36,8 @@ public class modalClassUser {
         this.userName = itemName;
         this.userPass = itemPrice;
 
+
     }
+
 
 }

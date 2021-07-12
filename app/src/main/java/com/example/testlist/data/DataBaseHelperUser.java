@@ -109,12 +109,39 @@ public class DataBaseHelperUser extends SQLiteOpenHelper {
         cursorCourses.close();
         return courseModalArrayList;
     }
+    public boolean Check(String a,String b) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE "
+                + NAME_COL + " LIKE '%" + a + "%' AND " + PASSWORD_COL +
+                " LIKE '%" + b + "%'", null);
+        if (cursor.getCount() <= 0) {
+            cursor.close();
+            return false;
+        }
+
+        cursor.close();
+        return true;
+
+    }
+    public void Update(String a, String b,String c)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(" UPDATE " + TABLE_NAME + " SET "+ MOBILE_COL +"=" + b + " SET "+ PASSWORD_COL +"=" + c + " WHERE "
+                + NAME_COL + " LIKE '%" + a + "%'" , null);
+
+        cursor.close();
+
+    }
+
+
+
     public ArrayList<modalClassUser> Search(String a,String b)
     {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor=db.rawQuery("SELECT * FROM "+ TABLE_NAME + " WHERE "
                 + NAME_COL + " LIKE '%" + a + "%' AND " + PASSWORD_COL +
                 " LIKE '%" + b + "%'",null);
+
 
         ArrayList<modalClassUser> SearchArrayList = new ArrayList<>();
 
@@ -131,9 +158,33 @@ public class DataBaseHelperUser extends SQLiteOpenHelper {
         // and returning our array list.
         cursor.close();
         return SearchArrayList;
+    }
+
+    public ArrayList<String> DisplayData(String a)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor=db.rawQuery("SELECT " + NAME_COL+","+MOBILE_COL+" FROM "+ TABLE_NAME + " WHERE "
+                + NAME_COL + " LIKE '%" + a + "%'" ,null);
+
+
+        ArrayList<String> SearchArrayList = new ArrayList<>();
+
+        if(cursor.moveToFirst())
+        {
+            do {
+                // on below line we are adding the data from cursor to our array list.
+                SearchArrayList.add(cursor.getString(0));
+                SearchArrayList.add(cursor.getString(1));
+            }
+            while (cursor.moveToNext());
+            // moving our cursor to next.
         }
-
-
+        System.out.println(SearchArrayList);
+        // at last closing our cursor
+        // and returning our array list.
+        cursor.close();
+        return SearchArrayList;
+    }
 
 
     @Override

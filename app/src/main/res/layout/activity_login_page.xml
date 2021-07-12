@@ -9,7 +9,7 @@
 
     <!--Edit text to enter course name-->
     <EditText
-        android:id="@+id/idEdtCourseName"
+        android:id="@+id/Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -20,7 +20,7 @@
 
     <!--edit text for course description-->
     <EditText
-        android:id="@+id/idEdtCourseDescription"
+        android:id="@+id/Password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -33,7 +33,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="Enter Asprin"
-        android:textAllCaps="false"
         android:onClick="Signin"/>
+    <Button
+        android:id="@+id/Signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Sign up"
+        android:onClick="Signup"/>
 
 </LinearLayout>
