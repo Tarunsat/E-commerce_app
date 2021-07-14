@@ -92,45 +92,7 @@ public class DataBaseHelperInventory extends SQLiteOpenHelper {
         // database after adding database.
         db.close();
     }
-    public void addDefaultItem() {
 
-        // on below line we are creating a variable for
-        // our sqlite database and calling writable method
-        // as we are writing data in our database.
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        // on below line we are creating a
-        // variable for content values.
-        ContentValues values = new ContentValues();
-
-        // on below line we are passing all values
-        // along with its key and value pair.
-        values.put(NAME_COL,"Nice sky");
-        values.put(STOCK_COL, "10");
-        values.put(PRICE_COL, "500");
-        values.put(IMAGE_COL, "nicesky.jpg");
-        values.put(NAME_COL,"land");
-        values.put(STOCK_COL, "40");
-        values.put(PRICE_COL, "100");
-        values.put(IMAGE_COL, "lund.jpg");
-        values.put(NAME_COL,"bruh");
-        values.put(STOCK_COL, "1");
-        values.put(PRICE_COL, "50000");
-        values.put(IMAGE_COL, "bruh.jpg");
-        values.put(NAME_COL,"whoa");
-        values.put(STOCK_COL, "100");
-        values.put(PRICE_COL, "50");
-        values.put(IMAGE_COL, "whoa.jpg");
-
-
-        // after adding all values we are passing
-        // content values to our table.
-        db.insert(TABLE_NAME, null, values);
-
-        // at last we are closing our
-        // database after adding database.
-        db.close();
-    }
 
     public ArrayList<modalClass> readCourses() {
         // on below line we are creating a

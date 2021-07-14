@@ -127,7 +127,7 @@ public class DataBaseHelperUser extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(" UPDATE " + TABLE_NAME + " SET "+ MOBILE_COL +"=" + b + " SET "+ PASSWORD_COL +"=" + c + " WHERE "
-                + NAME_COL + " LIKE '%" + a + "%'" , null);
+                + NAME_COL + " LIKE '%" + a + "%';" , null);
 
         cursor.close();
 

@@ -14,6 +14,9 @@
 
 
     <RelativeLayout
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:id="@+id/item1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,7 +67,9 @@
 
 
         <RelativeLayout
-
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:id="@+id/quan"
             android:layout_width="100sp"
             android:layout_height="60sp"
@@ -121,7 +126,7 @@
 
                 android:background="@color/black"
                 android:textColor="@color/white"
-                android:onClick="Pos"
+                android:onClick="onClick"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
 
                 android:gravity="end" />

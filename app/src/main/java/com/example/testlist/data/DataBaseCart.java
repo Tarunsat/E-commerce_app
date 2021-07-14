@@ -95,7 +95,7 @@ public class DataBaseCart extends SQLiteOpenHelper {
         // database after adding database.
         db.close();
     }
-    public void UpdateQuantity(String itemPrice)
+    public void UpdateQuantity(String itemPrice,String d)
     {
         String n= sharedData.getValue();
         // on below line we are creating a variable for
@@ -108,20 +108,49 @@ public class DataBaseCart extends SQLiteOpenHelper {
 
         // on below line we are passing all values
         // along with its key and value pair.
+        ContentValues newValues = new ContentValues();
+        newValues.put(QUAN_COL, itemPrice);
 
+        db.update(TABLE_NAME, newValues, "product LIKE'"+ d +"'", null);
 
-        Cursor cursor = db.rawQuery(" UPDATE " + TABLE_NAME + " SET "+ QUAN_COL +"=" + itemPrice + " WHERE "
-                + USER_COL + " LIKE '%" + n + "%'" , null);
+       // Cursor cursor = db.rawQuery(" UPDATE " + TABLE_NAME + " SET " + QUAN_COL + " = '"+itemPrice+"' WHERE "
+         //       + USER_COL + " LIKE '%"+n+"%' AND " + PRODUCT_COL + " LIKE '%"+d+"%';" , null);
 
         // after adding all values we are passing
         // content values to our table.
 
         // at last we are closing our
         // database after adding database.
-        cursor.close();
+       // cursor.close();
     }
 
-    public ArrayList<modalClass> readCourses() {
+    public String QuantityDisplay(String a,String b)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor=db.rawQuery("SELECT " + QUAN_COL +" FROM "+ TABLE_NAME + " WHERE "
+                + USER_COL + " LIKE '%" + a + "%' AND " + PRODUCT_COL + " LIKE '%"+ b +"%'"  ,null);
+
+
+        String Display = "0";
+
+        if(cursor.moveToFirst())
+        {
+            do {
+                // on below line we are adding the data from cursor to our array list.
+               Display= cursor.getString(0);
+               
+            }
+            while (cursor.moveToNext());
+            // moving our cursor to next.
+        }
+       
+        // at last closing our cursor
+        // and returning our array list.
+        cursor.close();
+        return Display;
+    }
+
+    public ArrayList<modalClassCart> readQuan() {
         // on below line we are creating a
         // database for reading our database.
         SQLiteDatabase db = this.getReadableDatabase();
@@ -130,16 +159,16 @@ public class DataBaseCart extends SQLiteOpenHelper {
         Cursor cursorCourses = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 
         // on below line we are creating a new array list.
-        ArrayList<modalClass> courseModalArrayList = new ArrayList<>();
+        ArrayList<modalClassCart> courseModalArrayList = new ArrayList<>();
 
         // moving our cursor to first position.
         if (cursorCourses.moveToFirst()) {
             do {
                 // on below line we are adding the data from cursor to our array list.
-                courseModalArrayList.add(new modalClass(cursorCourses.getString(1),
+                courseModalArrayList.add(new modalClassCart(cursorCourses.getString(1),
                         cursorCourses.getString(2),
-                        cursorCourses.getString(3),
-                        cursorCourses.getString(4)));
+                        cursorCourses.getString(3)
+                        ));
             } while (cursorCourses.moveToNext());
             // moving our cursor to next.
         }
@@ -148,6 +177,8 @@ public class DataBaseCart extends SQLiteOpenHelper {
         cursorCourses.close();
         return courseModalArrayList;
     }
+
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // this method is called to check if the table exists already.

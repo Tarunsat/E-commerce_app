@@ -9,14 +9,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.testlist.data.DataBaseCart;
 import com.example.testlist.data.DataBaseHelperInventory;
 import com.example.testlist.data.modalClass;
+import com.example.testlist.data.modalClassCart;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<modalClass> courseModalArrayList;
+    private ArrayList<modalClassCart> modalCartArrayList;
     private DataBaseHelperInventory dbHandler;
+    private DataBaseCart dbHandler1;
+
     private RVAAdapter courseRVAdapter;
     private RecyclerView coursesRV;
     Global sharedData = Global.getInstance();
@@ -34,14 +39,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         courseModalArrayList = new ArrayList<>();
+        modalCartArrayList= new ArrayList<>();
         dbHandler = new DataBaseHelperInventory(MainActivity.this);
+        dbHandler1= new DataBaseCart(MainActivity.this);
 
         // getting our course array
         // list from db handler class.
         courseModalArrayList = dbHandler.readCourses();
+        modalCartArrayList=dbHandler1.readQuan();
 
         // on below line passing our array lost to our adapter class.
-        courseRVAdapter = new RVAAdapter(courseModalArrayList, MainActivity.this);
+        courseRVAdapter = new RVAAdapter(courseModalArrayList,modalCartArrayList, MainActivity.this);
         coursesRV = findViewById(R.id.idRVCourses);
 
         // setting layout manager for our recycler view.
