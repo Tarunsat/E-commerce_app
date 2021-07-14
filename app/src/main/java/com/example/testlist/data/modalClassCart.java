@@ -23,7 +23,15 @@ public class modalClassCart {
         this.product = product;
     }
     public String getQuantity() {
-        return quantity;
+        if(quantity == null)
+        {
+            return "0";
+        }
+        else
+        {
+            return quantity;
+        }
+
     }
     public void setQuantity(String quantity) {
         this.quantity = quantity;

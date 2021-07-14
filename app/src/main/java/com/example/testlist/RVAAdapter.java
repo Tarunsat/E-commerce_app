@@ -48,7 +48,7 @@ public class RVAAdapter extends RecyclerView.Adapter<RVAAdapter.ViewHolder> {
         // on below line we are setting data
         // to our views of recycler view item.
         modalClass modal = courseModalArrayList.get(position);
-       // modalClassCart modal1= modalCartArrayList.get(position);
+        //modalClassCart modal1= modalCartArrayList.get(position);
         holder.NameTV.setText(modal.getItemName());
         holder.price.setText(modal.getItemPrice());
        // holder.Quantit.setText(modal1.getQuantity());
