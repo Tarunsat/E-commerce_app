@@ -77,6 +77,7 @@ public class RVAAdapter extends RecyclerView.Adapter<RVAAdapter.ViewHolder> {
             price = itemView.findViewById(R.id.price);
             Quantit = itemView.findViewById(R.id.quantity_text_view);
             butt = itemView.findViewById(R.id.positive);
+            neg= itemView.findViewById(R.id.negative);
 
 
 
@@ -130,20 +131,17 @@ public class RVAAdapter extends RecyclerView.Adapter<RVAAdapter.ViewHolder> {
                     String a = dbHandler.QuantityDisplay(n,Name);
                     quan= Integer.parseInt(a);
 
-                    if(quan==0)
-                    {
-                        quan++;
-                        System.out.println(quan);
-                        String quomo=Integer.toString(quan);
-                        dbHandler.addNewItem(n,Name,quomo);
 
-                    }
-                    else if(quan>0)
+                    if(quan>1)
                     {
-                        quan++;
+                        quan--;
                         System.out.println(quan);
                         String quomo=Integer.toString(quan);
                         dbHandler.UpdateQuantity(quomo,Name);
+                    }
+                    else if(quan==1)
+                    {
+                        dbHandler.Delete(Name);
                     }
 
 
