@@ -137,7 +137,7 @@ public class RVCartAdapter extends RecyclerView.Adapter<RVCartAdapter.ViewHolder
                     } else if (quan == 1) {
                         dbHandler.Delete(Name);
                     }
-                    Toast.makeText(context.getApplicationContext(), "Item added to Cart", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context.getApplicationContext(), "Item removed from Cart", Toast.LENGTH_SHORT).show();
 
 
 

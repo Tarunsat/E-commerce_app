@@ -146,7 +146,7 @@ public class RVAAdapter extends RecyclerView.Adapter<RVAAdapter.ViewHolder> {
                     {
                         dbHandler.Delete(Name);
                     }
-                    Toast.makeText(context.getApplicationContext(), "Item added to Cart", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context.getApplicationContext(), "Item removed from Cart", Toast.LENGTH_SHORT).show();
 
 
 

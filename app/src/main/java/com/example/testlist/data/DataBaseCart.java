@@ -103,6 +103,14 @@ public class DataBaseCart extends SQLiteOpenHelper {
 
         db.delete("cart","user=? and product=?",new String[]{n,d});
     }
+    public void CartDelete()
+    {
+        String n= sharedData.getValue();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete("cart","user=?",new String[]{n});
+    }
     public void UpdateQuantity(String itemPrice,String d)
     {
         String n= sharedData.getValue();

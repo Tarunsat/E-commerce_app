@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,11 +29,14 @@ public class TotalCostActivity extends menuitems {
     private TextView TotalCost;
     private ArrayList<modalclasstotal> totalarray;
     private TextView totalview;
+    private int sum;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         display();
+        Pay();
+
     }
     public void gotoMain(View view) {
         Intent i = new Intent(this, MainActivity.class);
@@ -63,27 +67,14 @@ public class TotalCostActivity extends menuitems {
 
 
     }
-    public void Pay(View view)
-    {
-        int sum=0;
-        totalarray=dbHandler1.join();
-        System.out.println(totalarray);
-        //int a= totalarray.size();
-        //System.out.println(totalarray);
-        /*for (int i=1;i<=a;i++)
-        {
-
-            modalclasstotal modal = totalarray.get(i);
-            int s=Integer.parseInt(modal.getQuantity());
-            int d=Integer.parseInt(modal.getPrice());
-            sum=sum+(s*d);
-        }
-            totalview=findViewById(R.id.tot);
-            totalview.setText(sum);
-            
-            */
-    }
     public void Payer(View view)
+    {
+        dbHandler1.CartDelete();
+        Toast.makeText(getApplicationContext(), "Thank you for buying!!", Toast.LENGTH_LONG).show();
+
+
+    }
+    public void Pay()
     {
         int sum=0;
         totalarray=dbHandler1.join();
