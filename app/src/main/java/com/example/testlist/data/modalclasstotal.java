@@ -1,10 +1,13 @@
 package com.example.testlist.data;
 
 
-public class modalClassCart {
+
+
+public class modalclasstotal  {
     private String user;
     private String product;
     private String quantity;
+    private String price;
 
 
     private int id;
@@ -15,9 +18,7 @@ public class modalClassCart {
 
 
 
-    public void setPrice(String user) {
-        this.user = user;
-    }
+
 
     public String getProduct() {
         return product;
@@ -36,6 +37,15 @@ public class modalClassCart {
         }
 
     }
+    public String getPrice() {
+        return price;
+    }
+
+
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
     public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
@@ -51,9 +61,9 @@ public class modalClassCart {
     }
 
 
-    public modalClassCart(String user, String product,String quantity) {
-        this.user = user;
-        this.product = product;
+    public modalclasstotal(String quantity, String price) {
+
+        this.price = price;
         this.quantity=quantity;
 
 

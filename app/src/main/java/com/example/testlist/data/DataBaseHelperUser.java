@@ -12,7 +12,7 @@ public class DataBaseHelperUser extends SQLiteOpenHelper {
 
     // creating a constant variables for our database.
     // below variable is for our database name.
-    private static final String DB_NAME = "userdb";
+    private static final String DB_NAME = "Cartdb";
 
     // below int is our database version
     private static final int DB_VERSION = 1;
@@ -162,6 +162,7 @@ public class DataBaseHelperUser extends SQLiteOpenHelper {
 
     public ArrayList<String> DisplayData(String a)
     {
+
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor=db.rawQuery("SELECT " + NAME_COL+","+MOBILE_COL+" FROM "+ TABLE_NAME + " WHERE "
                 + NAME_COL + " LIKE '%" + a + "%'" ,null);

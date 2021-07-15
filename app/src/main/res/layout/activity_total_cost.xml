@@ -58,13 +58,10 @@
 
             />
 
-        <ListView
-            android:id="@+id/listview_spinner"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/idRVCartCourses"
             android:layout_width="match_parent"
-            android:layout_height="562dp"
-            android:paddingTop="40sp">
-
-        </ListView>
+            android:layout_height="967dp" />
     </LinearLayout>
     </ScrollView>
         <RelativeLayout
@@ -76,21 +73,35 @@
 
         <TextView
 
-            android:id="@+id/tot"
+            android:id="@+id/totaltag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="Total: ₹0"
+            android:text="Total: ₹"
             android:textColor="@color/black"
             android:textSize="30sp"
 
             android:gravity="center_horizontal" />
+
+            <TextView
+
+                android:id="@+id/tot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/totaltag"
+
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+
+                android:gravity="center_horizontal" />
 
          <Button
              android:id="@+id/pay"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:text="Pay"
+             android:onClick="Payer"
             android:layout_alignParentRight="true"/>
 
 

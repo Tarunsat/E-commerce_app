@@ -17,21 +17,24 @@ import com.example.testlist.data.modalClassCart;
 
 import java.util.ArrayList;
 
-public class RVAAdapter extends RecyclerView.Adapter<RVAAdapter.ViewHolder> {
+
+public class RVCartAdapter extends RecyclerView.Adapter<RVCartAdapter.ViewHolder> {
 
     // variable for our array list and context
     private ArrayList<modalClass> courseModalArrayList;
     private Context context;
     private ArrayList<modalClassCart> modalCartArrayList;
 
+
     Global sharedData = Global.getInstance();
 
 
     private DataBaseCart dbHandler;
+
     // constructor
-    public RVAAdapter(ArrayList<modalClass> courseModalArrayList,ArrayList<modalClassCart> modalCartArrayList, Context context) {
+    public RVCartAdapter(ArrayList<modalClass> courseModalArrayList, ArrayList<modalClassCart> modalCartArrayList, Context context) {
         this.courseModalArrayList = courseModalArrayList;
-        this.modalCartArrayList= modalCartArrayList;
+        this.modalCartArrayList = modalCartArrayList;
         this.context = context;
     }
 
@@ -48,26 +51,25 @@ public class RVAAdapter extends RecyclerView.Adapter<RVAAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // on below line we are setting data
         // to our views of recycler view item.
-        modalClass modal = courseModalArrayList.get(position);
-        //modalClassCart modal1= modalCartArrayList.get(position);
-        holder.NameTV.setText(modal.getItemName());
-        holder.price.setText(modal.getItemPrice());
-       // holder.Quantit.setText(modal1.getQuantity());
+
+        modalClassCart modal1= modalCartArrayList.get(position);
+        holder.NameTV.setText(modal1.getProduct());
+        holder.Quantit.setText(modal1.getQuantity());
 
     }
 
     @Override
     public int getItemCount() {
         // returning the size of our array list
-        return courseModalArrayList.size();
+        return modalCartArrayList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         // creating variables for our text views.
-        private TextView NameTV, price,Quantit;
-        int quan=0;
-        private Button butt,neg;
+        private TextView NameTV, price, Quantit;
+        int quan = 0;
+        private Button butt, neg;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -78,13 +80,10 @@ public class RVAAdapter extends RecyclerView.Adapter<RVAAdapter.ViewHolder> {
             price = itemView.findViewById(R.id.price);
             Quantit = itemView.findViewById(R.id.quantity_text_view);
             butt = itemView.findViewById(R.id.positive);
-            neg= itemView.findViewById(R.id.negative);
-
+            neg = itemView.findViewById(R.id.negative);
 
 
             // getting our course array
-
-
 
 
             butt.setOnClickListener(new View.OnClickListener() {
@@ -92,28 +91,24 @@ public class RVAAdapter extends RecyclerView.Adapter<RVAAdapter.ViewHolder> {
                 public void onClick(View v) {
 
 
-
-                    String n= sharedData.getValue();
+                    String n = sharedData.getValue();
                     dbHandler = new DataBaseCart(itemView.getContext());
                     String Name = NameTV.getText().toString();
 
-                    String a = dbHandler.QuantityDisplay(n,Name);
-                    quan= Integer.parseInt(a);
+                    String a = dbHandler.QuantityDisplay(n, Name);
+                    quan = Integer.parseInt(a);
 
-                    if(quan==0)
-                    {
+                    if (quan == 0) {
                         quan++;
                         System.out.println(quan);
-                        String quomo=Integer.toString(quan);
-                        dbHandler.addNewItem(n,Name,quomo);
+                        String quomo = Integer.toString(quan);
+                        dbHandler.addNewItem(n, Name, quomo);
 
-                    }
-                    else if(quan>0)
-                    {
+                    } else if (quan > 0) {
                         quan++;
                         System.out.println(quan);
-                        String quomo=Integer.toString(quan);
-                        dbHandler.UpdateQuantity(quomo,Name);
+                        String quomo = Integer.toString(quan);
+                        dbHandler.UpdateQuantity(quomo, Name);
                     }
                     Toast.makeText(context.getApplicationContext(), "Item added to Cart", Toast.LENGTH_SHORT).show();
 
@@ -127,23 +122,19 @@ public class RVAAdapter extends RecyclerView.Adapter<RVAAdapter.ViewHolder> {
                 public void onClick(View v) {
 
 
-
-                    String n= sharedData.getValue();
+                    String n = sharedData.getValue();
                     dbHandler = new DataBaseCart(itemView.getContext());
                     String Name = NameTV.getText().toString();
-                    String a = dbHandler.QuantityDisplay(n,Name);
-                    quan= Integer.parseInt(a);
+                    String a = dbHandler.QuantityDisplay(n, Name);
+                    quan = Integer.parseInt(a);
 
 
-                    if(quan>1)
-                    {
+                    if (quan > 1) {
                         quan--;
                         System.out.println(quan);
-                        String quomo=Integer.toString(quan);
-                        dbHandler.UpdateQuantity(quomo,Name);
-                    }
-                    else if(quan==1)
-                    {
+                        String quomo = Integer.toString(quan);
+                        dbHandler.UpdateQuantity(quomo, Name);
+                    } else if (quan == 1) {
                         dbHandler.Delete(Name);
                     }
                     Toast.makeText(context.getApplicationContext(), "Item added to Cart", Toast.LENGTH_SHORT).show();
@@ -154,12 +145,6 @@ public class RVAAdapter extends RecyclerView.Adapter<RVAAdapter.ViewHolder> {
             });
 
 
-
-
         }
     }
-
-
-
-
 }

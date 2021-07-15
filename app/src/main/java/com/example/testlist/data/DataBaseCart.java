@@ -157,6 +157,33 @@ public class DataBaseCart extends SQLiteOpenHelper {
         cursor.close();
         return Display;
     }
+    public ArrayList<String> total(String a)
+    {
+        String n= sharedData.getValue();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor=db.rawQuery("SELECT " + QUAN_COL +","+PRODUCT_COL+" FROM "+ TABLE_NAME + " WHERE "
+                + USER_COL + " LIKE '%" + n + "%'" ,null);
+
+
+        ArrayList<String> SearchArrayList = new ArrayList<>();
+
+        if(cursor.moveToFirst())
+        {
+            do {
+                // on below line we are adding the data from cursor to our array list.
+                SearchArrayList.add(cursor.getString(0));
+                SearchArrayList.add(cursor.getString(1));
+            }
+            while (cursor.moveToNext());
+            // moving our cursor to next.
+        }
+        System.out.println(SearchArrayList);
+        // at last closing our cursor
+        // and returning our array list.
+        cursor.close();
+        return SearchArrayList;
+    }
 
     public ArrayList<modalClassCart> readQuan() {
         // on below line we are creating a
@@ -175,8 +202,7 @@ public class DataBaseCart extends SQLiteOpenHelper {
                 // on below line we are adding the data from cursor to our array list.
                 courseModalArrayList.add(new modalClassCart(cursorCourses.getString(1),
                         cursorCourses.getString(2),
-                        cursorCourses.getString(3)
-                        ));
+                        cursorCourses.getString(3)));
             } while (cursorCourses.moveToNext());
             // moving our cursor to next.
         }
@@ -185,6 +211,36 @@ public class DataBaseCart extends SQLiteOpenHelper {
         cursorCourses.close();
         return courseModalArrayList;
     }
+    public ArrayList<modalclasstotal> join() {
+        // on below line we are creating a
+        // database for reading our database.
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // on below line we are creating a cursor with query to read data from database.
+        Cursor cursorCourses = db.rawQuery("SELECT cart.quantity as quantity_alt,inventory.price as price_alt FROM cart  INNER JOIN inventory ON inventory.name = cart.product;", null);
+
+        // on below line we are creating a new array list.
+        ArrayList<modalclasstotal> courseModalArrayList = new ArrayList<>();
+
+        // moving our cursor to first position.
+        if (cursorCourses.moveToFirst()) {
+            do {
+                // on below line we are adding the data from cursor to our array list.
+                courseModalArrayList.add(new modalclasstotal(cursorCourses.getString(cursorCourses.getColumnIndex("price_alt")),
+                        cursorCourses.getString(cursorCourses.getColumnIndex("quantity_alt"))
+                        ));
+
+
+            } while (cursorCourses.moveToNext());
+            // moving our cursor to next.
+        }
+        // at last closing our cursor
+        // and returning our array list.
+        cursorCourses.close();
+        return courseModalArrayList;
+    }
+
+
 
 
     @Override
